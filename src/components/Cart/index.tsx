@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux'
 import Button from '../Button'
 import Tag from '../Tag'
 import {
@@ -8,11 +9,21 @@ import {
   Quantily,
   Sidebar
 } from './styles'
+import { RootReducer } from '../../store'
+import { close } from '../../store/reducers/cart'
 
 const Cart = () => {
+  const { isOpen } = useSelector((state: RootReducer) => state.cart)
+
+  const dispatch = useDispatch()
+
+  const closeCart = () => {
+    dispatch(close())
+  }
+
   return (
-    <CartContainer>
-      <Overlay></Overlay>
+    <CartContainer className={isOpen ? 'is-open' : ''}>
+      <Overlay onClick={closeCart}></Overlay>
       <Sidebar>
         <ul>
           <CartItem>
