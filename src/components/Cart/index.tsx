@@ -50,7 +50,7 @@ const Cart = () => {
             </CartItem>
           ))}
         </ul>
-        <Quantily> {items.length} jogos no carrinho</Quantily>
+        <Quantily> {items.length} jogo(s) no carrinho</Quantily>
         <Prices>
           total de {formataPreco(getTotalPrice())}{' '}
           <span>Em até 6x sem juros</span>
