@@ -7,7 +7,7 @@ import Tag from '../Tag'
 import { RootReducer } from '../../store'
 import { close, remove } from '../../store/reducers/cart'
 
-import { parseToBrl } from '../../utils'
+import { getTotalPrice, parseToBrl } from '../../utils'
 
 import * as S from './styles'
 
@@ -19,15 +19,6 @@ const Cart = () => {
 
   const closeCart = () => {
     dispatch(close())
-  }
-
-  const getTotalPrice = () => {
-    return items.reduce((accumulator, currentItem) => {
-      if (currentItem.prices.current) {
-        return (accumulator += currentItem.prices.current)
-      }
-      return 0
-    }, 0)
   }
 
   const removeItem = (id: number) => {
@@ -59,7 +50,7 @@ const Cart = () => {
         </ul>
         <S.Quantily> {items.length} jogo(s) no carrinho</S.Quantily>
         <S.Prices>
-          total de {parseToBrl(getTotalPrice())}{' '}
+          total de {parseToBrl(getTotalPrice(items))}{' '}
           <span>Em até 6x sem juros</span>
         </S.Prices>
         <Button
